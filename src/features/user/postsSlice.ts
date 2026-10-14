@@ -1,17 +1,15 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { Post } from '../../types/Post';
 
-type UsersState = {
+type PostState = {
   items: Post[];
-  post: Post | null;
   loaded: boolean;
   hasError: boolean;
 };
 
-const initialState: UsersState = {
+const initialState: PostState = {
   items: [],
-  post: null,
   loaded: false,
   hasError: false,
 };
@@ -23,9 +21,6 @@ export const postsSlice = createSlice({
     setPosts: (state, action) => {
       state.items = action.payload;
     },
-    setPost: (state, action: PayloadAction<Post | null>) => {
-      state.post = action.payload;
-    },
     setError: (state, action) => {
       state.hasError = action.payload;
     },
@@ -35,5 +30,5 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { setPosts, setPost, setError, setLoaded } = postsSlice.actions;
+export const { setPosts, setError, setLoaded } = postsSlice.actions;
 export default postsSlice.reducer;

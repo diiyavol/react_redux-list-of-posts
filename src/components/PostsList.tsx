@@ -2,11 +2,11 @@
 
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setPost } from '../features/user/postsSlice';
+import { setPost } from '../features/user/selectedPost';
 
 export const PostsList = () => {
   const posts = useAppSelector(state => state.posts.items);
-  const selectedPost = useAppSelector(state => state.posts.post);
+  const selectedPost = useAppSelector(state => state.selectedPost.post);
 
   const dispatch = useAppDispatch();
 

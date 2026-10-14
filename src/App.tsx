@@ -13,18 +13,14 @@ import { getUserPosts } from './api/posts';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { getUsers } from './api/users';
 import { setUsers } from './features/user/userSlice';
-import {
-  setError,
-  setLoaded,
-  setPost,
-  setPosts,
-} from './features/user/postsSlice';
+import { setError, setLoaded, setPosts } from './features/user/postsSlice';
+import { setPost } from './features/user/selectedPost';
 
 export const App: React.FC = () => {
   const posts = useAppSelector(state => state.posts.items);
 
   const author = useAppSelector(state => state.users.user);
-  const selectedPost = useAppSelector(state => state.posts.post);
+  const selectedPost = useAppSelector(state => state.selectedPost.post);
 
   const isLoading = useAppSelector(state => state.posts.loaded);
   const hasError = useAppSelector(state => state.posts.hasError);

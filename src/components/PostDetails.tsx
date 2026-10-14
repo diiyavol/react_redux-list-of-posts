@@ -14,12 +14,10 @@ import { setError } from '../features/user/postsSlice';
 export const PostDetails = () => {
   const [visible, setVisible] = useState(false);
 
-  const post = useAppSelector(state => state.posts.post);
+  const post = useAppSelector(state => state.selectedPost.post);
   const dispatch = useAppDispatch();
 
-  const { comments, loaded, hasError } = useAppSelector(
-    state => state.comments,
-  );
+  const { items, loaded, hasError } = useAppSelector(state => state.comments);
 
   useEffect(() => {
     if (post?.id) {
@@ -67,25 +65,25 @@ export const PostDetails = () => {
           </div>
         )}
 
-        {loaded && !hasError && comments.length === 0 && (
+        {loaded && !hasError && items.length === 0 && (
           <p className="title is-4" data-cy="NoCommentsMessage">
             No comments yet
           </p>
         )}
 
-        {loaded && !hasError && comments.length > 0 && (
+        {loaded && !hasError && items.length > 0 && (
           <>
             <p className="title is-4">Comments:</p>
 
-            {comments.map(comment => (
+            {items.map(item => (
               <article
                 className="message is-small"
-                key={comment.id}
+                key={item.id}
                 data-cy="Comment"
               >
                 <div className="message-header">
-                  <a href={`mailto:${comment.email}`} data-cy="CommentAuthor">
-                    {comment.name}
+                  <a href={`mailto:${item.email}`} data-cy="CommentAuthor">
+                    {item.name}
                   </a>
 
                   <button
@@ -93,14 +91,14 @@ export const PostDetails = () => {
                     type="button"
                     className="delete is-small"
                     aria-label="delete"
-                    onClick={() => handleDeleteComment(comment.id)}
+                    onClick={() => handleDeleteComment(item.id)}
                   >
                     delete button
                   </button>
                 </div>
 
                 <div className="message-body" data-cy="CommentBody">
-                  {comment.body}
+                  {item.body}
                 </div>
               </article>
             ))}

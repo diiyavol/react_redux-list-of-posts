@@ -3,16 +3,18 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import { userSlice } from '../features/user/userSlice';
 import { postsSlice } from '../features/user/postsSlice';
-import { currentUserSlice } from '../features/user/currentUserSlice';
-import { commentsSlice } from '../features/user/commentSlice';
+import { selectedPostSlice } from '../features/user/selectedPost';
+import { authorSlice } from '../features/user/authorSlice';
+import commentsReducer from '../features/user/commentSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     users: userSlice.reducer,
     posts: postsSlice.reducer,
-    currentUser: currentUserSlice.reducer,
-    comments: commentsSlice.reducer,
+    comments: commentsReducer,
+    selectedPost: selectedPostSlice.reducer,
+    author: authorSlice.reducer,
   },
 });
 

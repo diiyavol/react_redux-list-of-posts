@@ -4,13 +4,13 @@ import { Comment, CommentData } from '../../types/Comment';
 import * as commentsApi from '../../api/comments';
 
 export interface CommentsState {
-  comments: Comment[];
+  items: Comment[];
   loaded: boolean;
   hasError: boolean;
 }
 
 const initialState: CommentsState = {
-  comments: [],
+  items: [],
   loaded: false,
   hasError: false,
 };
@@ -53,24 +53,23 @@ export const commentsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      // fetchComments
       .addCase(fetchComments.pending, state => {
         state.loaded = false;
         state.hasError = false;
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.loaded = true;
-        state.comments = action.payload;
+        state.items = action.payload;
       })
       .addCase(fetchComments.rejected, state => {
         state.loaded = true;
         state.hasError = true;
       })
       .addCase(addComment.fulfilled, (state, action) => {
-        state.comments.push(action.payload);
+        state.items.push(action.payload);
       })
       .addCase(removeComment.fulfilled, (state, action) => {
-        state.comments = state.comments.filter(
+        state.items = state.items.filter(
           comment => comment.id !== action.payload,
         );
       });
