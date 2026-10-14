@@ -19,7 +19,7 @@ import { setPost } from './features/user/selectedPost';
 export const App: React.FC = () => {
   const posts = useAppSelector(state => state.posts.items);
 
-  const author = useAppSelector(state => state.users.user);
+  const author = useAppSelector(state => state.author.author);
   const selectedPost = useAppSelector(state => state.selectedPost.post);
 
   const isLoading = useAppSelector(state => state.posts.loaded);

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setUser } from '../features/user/userSlice';
+import { setAuthor } from '../features/user/authorSlice';
 
 export const UserSelector = () => {
   const [expanded, setExpanded] = useState(false);
 
   const users = useAppSelector(state => state.users.users);
-  const selectedUser = useAppSelector(state => state.users.user);
+  const selectedUser = useAppSelector(state => state.author.author);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export const UserSelector = () => {
             <a
               key={user.id}
               href={`#user-${user.id}`}
-              onClick={() => dispatch(setUser(user))}
+              onClick={() => dispatch(setAuthor(user))}
               className={classNames('dropdown-item', {
                 'is-active': user.id === selectedUser?.id,
               })}
