@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { setUser } from '../features/user/userSlice';
-// import { getUser } from '../api/users';
 
 export const UserSelector = () => {
   const [expanded, setExpanded] = useState(false);
